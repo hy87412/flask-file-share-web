@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>파일 업로드</title>
+    <script>
+        function goToDownload() {
+            const code = document.getElementById("downloadCode").value;
+            if (code) {
+                window.location.href = "/download/" + code;
+            } else {
+                alert("코드를 입력하세요.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>파일 업로드</h1>
+    <p><strong>고유 코드:</strong> {{ code }}</p>
+    <form action="/upload/{{ code }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <input type="submit" value="업로드">
+    </form>
+
+    <hr>
+
+    <h2>파일 다운로드</h2>
+    <input type="text" id="downloadCode" placeholder="다운로드 하려는 고유코드">
+    <button onclick="goToDownload()">다운로드</button>
+</body>
+</html>
